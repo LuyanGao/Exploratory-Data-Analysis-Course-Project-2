@@ -7,9 +7,12 @@ SCC <- readRDS("Source_Classification_Code.rds")
 
 library(dplyr)
 NEIdp <- tbl_df(NEI)
-EmissionsForYear = summarize(group_by(NEIdp, year), sum(Emissions))    # table with emissions per year
-colnames(EmissionsForYear) <- c("Year", "Emissions")   # renamed columns
-EmissionsForYear$EmissionsInMillions = EmissionsForYear$Emissions / 1000000   #new column with emissions in million (for the y axis)
+# Emissions per year
+EmissionsForYear = summarize(group_by(NEIdp, year), sum(Emissions))
+# Rename columns
+colnames(EmissionsForYear) <- c("Year", "Emissions") 
+# New column with emissions in millions
+EmissionsForYear$EmissionsInMillions = EmissionsForYear$Emissions / 1000000 
 
 # Plot it
 png('plot1.png')
